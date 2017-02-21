@@ -1,15 +1,20 @@
-# This implemets Phase Coupling Optimization in Matlab
+# Phase Coupling Optimization
 
-************************************************************************
-***Disclosure:                                                       ***
-***-----------                                                       ***
-***This software comes as it is - there might be errors at runtime   ***
-***and results might be wrong although the code was tested and did   ***
-***work as expected. Since resuluts might be wrong you must          ***
-***absolutely not use this software for a medical purpuse - decisions***
-***converning diagnosis, treatment or prophylaxis of any medical     ***
-***condition mustn't rely on this software.                          ***
-************************************************************************
+This implements Phase Coupling Optimization in Matlab
+
+A citable reference is not ready yet, but on the way.
+
+
+******************************************************************
+Disclosure:                                                       
+-----------                                                       
+This software comes as it is - there might be errors at runtime   
+and results might be wrong although the code was tested and did   
+work as expected. Since resuluts might be wrong you must          
+absolutely not use this software for a medical purpuse - decisions
+converning diagnosis, treatment or prophylaxis of any medical     
+condition mustn't rely on this software.                          
+******************************************************************
 
 License:
 --------
