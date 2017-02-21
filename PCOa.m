@@ -1,13 +1,4 @@
 function [vlen, wy] = PCO_a (a, y, nu, bestof)
-
-%define nested functions
-    function [obj, obj_der] = objfun_y(x)
-        [obj, obj_der] = PCOa_obj_der(x, a, y, -1);
-    end
-
-    function [obj, obj_der] = objfun_by(x)
-        [obj, obj_der] = PCOa_obj_der(x, a, by, -1);
-    end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Phase Amplitude Coupling Optimization, variant with provided amplitude
 %
@@ -17,8 +8,8 @@ function [vlen, wy] = PCO_a (a, y, nu, bestof)
 %
 %     Input:
 %     ------
-%     a - (1d numpy array, floats > 0) amplitudes
-%     Y - (2d numpy array, complex) analytic representation of signal,
+%     a - (column vector) amplitudes
+%     Y - (2d array, complex) analytic representation of signal,
 %         channels x datapoints
 %     num - (int > 0) - determines the number of filters that will be
 %                       derived. This depends also on the rank of Y,
@@ -32,10 +23,18 @@ function [vlen, wy] = PCO_a (a, y, nu, bestof)
 %
 %     Output:
 %     -------
-%     vlen - numpy array - the length of the mean vector for each filter
-%     Wy - numpy array - the filters for Y, each filter is in a column of
-%     Wy (if num==1: Wx is 1d)
+%     vlen - row vector - the length of the mean vector for each filter
+%     Wy - 2d array - the filters for Y, each filter is in a column of Wy
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%define nested functions
+    function [obj, obj_der] = objfun_y(x)
+        [obj, obj_der] = PCOa_obj_der(x, a, y, -1);
+    end
+
+    function [obj, obj_der] = objfun_by(x)
+        [obj, obj_der] = PCOa_obj_der(x, a, by, -1);
+    end
 % Fill in unset optional values.
 switch nargin
     case 2
