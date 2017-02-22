@@ -10,7 +10,7 @@ Disclosure:
 -----------                                                       
 This software comes as it is - there might be errors at runtime and results
 might be wrong although the code was tested and did work as expected. Since
-resuluts might be wrong you must absolutely not use this software for a
+results might be wrong you must absolutely not use this software for a
 medical purpuse - decisions concerning diagnosis, treatment or prophylaxis
 ***************************************************************************
 
