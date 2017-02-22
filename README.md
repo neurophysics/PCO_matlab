@@ -29,7 +29,7 @@ bestof = 15
 
 Inputs:
 -------
-a - (column vector) amplitudes
+a - (column vector) amplitudes/independent variable (experimental outcome)
 
 y - (2d array, complex) analytic representation of signal,
     channels x datapoints
@@ -77,5 +77,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Author & Contact
 ----------------
 Written by Gunnar Waterstraat & Iara de Almeida Ivo
+
 email: gunnar[dot]waterstraat[at]charite.de
 
