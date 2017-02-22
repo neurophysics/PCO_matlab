@@ -5,16 +5,45 @@ This implements Phase Coupling Optimization in Matlab
 A citable reference is not ready yet, but on the way.
 
 
-******************************************************************
+***************************************************************************
 Disclosure:                                                       
 -----------                                                       
-This software comes as it is - there might be errors at runtime   
-and results might be wrong although the code was tested and did   
-work as expected. Since resuluts might be wrong you must          
-absolutely not use this software for a medical purpuse - decisions
-converning diagnosis, treatment or prophylaxis of any medical     
-condition mustn't rely on this software.                          
-******************************************************************
+This software comes as it is - there might be errors at runtime and results
+might be wrong although the code was tested and did work as expected. Since
+resuluts might be wrong you must absolutely not use this software for a
+medical purpuse - decisions concerning diagnosis, treatment or prophylaxis
+***************************************************************************
+
+Usage:
+------
+[vlen, wy] = PCOa(a, y)
+[vlen, wy] = PCOa(a, y, nu)
+[vlen, wy] = PCOa(a, y, nu, bestof)
+
+Standard Parameters:
+------------------
+nu = 1
+bestof = 15
+
+Inputs:
+-------
+a - (column vector) amplitudes
+y - (2d array, complex) analytic representation of signal,
+    channels x datapoints
+num - (int > 0) - determines the number of filters that will be
+                  derived. This depends also on the rank of Y,
+                  the final number of filters will be min
+                  ([num, rank(y)]), defaults to 1
+bestof (int > 0) - the number of restarts for the optimization of the
+                   individual filters. The best filter over all
+                   these restarts with random initializations is
+                   chosen, defaults to 15.
+
+Outputs:
+-------
+vlen - row vector - the length of the mean vector for each filter
+wy - 2d array - the filters for Y, each filter is in a column of Wy
+***************************************************************************
 
 License:
 --------
