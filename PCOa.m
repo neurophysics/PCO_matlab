@@ -1,3 +1,8 @@
+% This file implements Phase Coupling Optimization
+% Written by Gunnar Waterstraat and Iara de Almeida Ivo
+% Please obey the Licens file, supplied with this software.
+% If you use this code in scientific work, please give proper reference
+
 function [vlen, wy] = PCOa(a, y, nu, bestof)
     % Phase Amplitude Coupling Optimization, variant with provided
     % amplitude
@@ -44,7 +49,7 @@ function [vlen, wy] = PCOa(a, y, nu, bestof)
 
     % define the options of the minimizer functions
     minoptions = optimoptions('fminunc', ...
-        'Algorithm', 'quasi-newton', ...
+        'Algorithm', 'trust-region', ...
         'HessUpdate', 'bfgs', ...
         'GradObj','on', ...
         'Display', 'off');
@@ -99,12 +104,12 @@ function [vlen, wy] = PCOa(a, y, nu, bestof)
             vlen = cat(2, vlen, all_best);
             filt = cat(2, filt, Vy(1:end,i:end)*all_best_x);
         end
-        %project filters back into original (un-whitened) channel space
-        wy = why*filt;
-        %normalize filters to have unit length
-        wy = bsxfun(@rdivide, wy, sqrt(sum(wy.^2, 1)));
-        vlen= -1*vlen;
     end
+    %project filters back into original (un-whitened) channel space
+    wy = why*filt;
+    %normalize filters to have unit length
+    wy = bsxfun(@rdivide, wy, sqrt(sum(wy.^2, 1)));
+    vlen = -1*vlen
 end
 
 % The following function defines the objective function and its
@@ -114,8 +119,8 @@ function[vlen, vlen_der] = PCOa_obj_der(w, a, y, sign)
     % at the filter y
     % if sign == -1, the results are multiplied with -1, this enables
     % maximizing the original variable (by minimizing -1*the objective)
-    filt = w'*y;
-    phase = angle(filt);
+    y_filtered = w'*y;
+    phase = angle(y_filtered);
     % calculate the result of the objective function
     a_norm = (a - mean(a))/std(a, 1);
     sum1_no_square = mean(a_norm.*cos(phase));
@@ -128,9 +133,9 @@ function[vlen, vlen_der] = PCOa_obj_der(w, a, y, sign)
     if nargout > 1 % calculate gradient
         % Partial derivative of phase
         phase_dwi = bsxfun(@rdivide, ...
-            bsxfun(@times, -real(y), imag(filt)) + ...
-            bsxfun(@times, imag(y), real(filt)), ...
-            real(filt).^2 + imag(filt).^2);
+            bsxfun(@times, -real(y), imag(y_filtered)) + ...
+            bsxfun(@times, imag(y), real(y_filtered)), ...
+            real(y_filtered).^2 + imag(y_filtered).^2);
         % Derivative of first summand
         sum1_d = 2*sum1_no_square*mean(bsxfun(@times, phase_dwi, ...
             -a_norm.*sin(phase)), 2);
