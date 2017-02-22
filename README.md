@@ -17,7 +17,9 @@ medical purpuse - decisions concerning diagnosis, treatment or prophylaxis
 Usage:
 ------
 [vlen, wy] = PCOa(a, y)
+
 [vlen, wy] = PCOa(a, y, nu)
+
 [vlen, wy] = PCOa(a, y, nu, bestof)
 
 Standard Parameters:
@@ -28,12 +30,15 @@ bestof = 15
 Inputs:
 -------
 a - (column vector) amplitudes
+
 y - (2d array, complex) analytic representation of signal,
     channels x datapoints
+
 num - (int > 0) - determines the number of filters that will be
                   derived. This depends also on the rank of Y,
                   the final number of filters will be min
                   ([num, rank(y)]), defaults to 1
+
 bestof (int > 0) - the number of restarts for the optimization of the
                    individual filters. The best filter over all
                    these restarts with random initializations is
@@ -42,6 +47,7 @@ bestof (int > 0) - the number of restarts for the optimization of the
 Outputs:
 -------
 vlen - row vector - the length of the mean vector for each filter
+
 wy - 2d array - the filters for Y, each filter is in a column of Wy
 ***************************************************************************
 
