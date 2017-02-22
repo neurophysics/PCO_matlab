@@ -30,26 +30,27 @@ bestof = 15
 
 Inputs:
 -------
-a - (column vector) amplitudes/independent variable (experimental outcome)
+a - (column vector) - amplitudes/independent variable (experimental outcome)
 
-y - (2d array, complex) analytic representation of signal,
-    channels x datapoints
+y - (2d array, complex) - analytic representation of signal,
+                          channels x datapoints
 
 num - (int > 0) - determines the number of filters that will be
                   derived. This depends also on the rank of Y,
                   the final number of filters will be min
                   ([num, rank(y)]), defaults to 1
 
-bestof (int > 0) - the number of restarts for the optimization of the
+bestof - (int > 0) - the number of restarts for the optimization of the
                    individual filters. The best filter over all
                    these restarts with random initializations is
                    chosen, defaults to 15.
 
 Outputs:
 -------
-vlen - row vector - the length of the mean vector for each filter
+vlen - (row vector) - the length of the mean vector for each filter
 
-wy - 2d array - the filters for Y, each filter is in a column of Wy
+wy - (2d array) - the filters for Y, each filter is in a column of Wy,
+                  channels x number of filters
 ***************************************************************************
 
 License:
