@@ -2,8 +2,11 @@
 
 This implements Phase Coupling Optimization in Matlab
 
-A citable reference is not ready yet, but on the way.
+If you use the algorithm, please cite:
 
+On optimal spatial filtering for the detection of phase coupling in
+multivariate neural recordings. Waterstraat G, Curio G, Nikulin VV.
+Neuroimage. 2017 Jun 13;157:331-340. doi: 10.1016/j.neuroimage.2017.06.025.
 
 ***************************************************************************
 Disclosure:                                                       
